@@ -1,0 +1,13 @@
+.table__heading-text{
+  text-align: center;
+  margin: 0;
+}
+.table__heading-button{
+  float: right;
+  background-color: red;
+  border-radius: 2px;
+  padding: 0 6px;
+  &:hover{
+    cursor: pointer;
+  }
+}
