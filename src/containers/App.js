@@ -1,6 +1,12 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {selectColumn, setTableAction, sortTableAction} from "../actions/actions";
+import {
+  cleanInputAction, filterAllAction,
+  filterTableAction,
+  selectColumnAction,
+  setTableAction,
+  sortTableAction
+} from "../actions/actions";
 import {initialState} from "../constants/initialState";
 import MyTable from "../components/MyTable";
 import {Table} from "react-bootstrap";
@@ -10,7 +16,10 @@ function mapStateToProps(state) {
   return {
     tableBody: state.tableBody,
     currentColumn: state.currentColumn,
-    currentRow: state.currentRow
+    currentRow: state.currentRow,
+    filterData: state.filterData,
+    isFilterAll: state.isFilterAll,
+    filterBoolean: state.filterBoolean
   };
 }
 
@@ -23,7 +32,16 @@ function mapDispatchToProps(dispatch) {
       dispatch(sortTableAction(initialState, value))
     },
     selectColumn: (value) => {
-      dispatch(selectColumn(value));
+      dispatch(selectColumnAction(value));
+    },
+    filterTable: (value) => {
+      dispatch(filterTableAction(initialState, value));
+    },
+    cleanInput: () => {
+      dispatch(cleanInputAction());
+    },
+    filterAllTable: () => {
+      dispatch(filterAllAction())
     }
   }
 }

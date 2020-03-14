@@ -11,7 +11,7 @@ function tableData() {
       `${faker.date.past().toLocaleString('en-US')}`,// birth year
       faker.commerce.price().toLocaleString(),// price
       `${faker.name.jobDescriptor()} ${faker.name.jobArea()} ${faker.name.jobType()}`,// job
-      (Math.random() - 0.5 > 0) ? '✓': '✗',// true:false
+      (Math.random() - 0.5 > 0) ,// true:false
       (Math.random() * Date.now()).toFixed(0)// date in seconds
     ];
     result.push(tableRowDataArray)
