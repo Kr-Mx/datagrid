@@ -50,9 +50,9 @@ export function filterAllAction(){
   }
 }
 
-export function filterBooleanAction(value){
+export function filterBooleanAction(payload){
   return {
     type: FILTER_BOOLEAN,
-    value
+    payload
   }
 }

@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import SortButtons from "./SortButtons";
 import Checkbox from 'react-three-state-checkbox';
+import {filterBooleanAction} from "../actions/actions";
 
 export default function MyTable(props) {
   let {data} = props;
@@ -26,8 +27,9 @@ export default function MyTable(props) {
           <SortButtons data={data}/>
           {(index === 5) ?
             <Checkbox
-            checked={false}
-            indeterminate={true}
+            checked={data.filterBoolean.isChecked}
+            indeterminate={data.filterBoolean.indeterminate}
+            onChange={(e)=>{console.log(data, data.filterBooleanTable(), data.filterBoolean.isChecked, data.filterBoolean.indeterminate)}}
           /> : null}
         </th>
       )
@@ -40,7 +42,7 @@ export default function MyTable(props) {
         {row.map((column, index) => {
           return (
             <td key={index} style={(index === data.currentColumn) ? {backgroundColor: "#43494e"} : null}>
-              {(index === 5)?((column)?<p>+</p>:<p>-</p>):column}
+              {(index === 5)?((column)?<>+</>:<>-</>):column}
             </td>
           )
         })}

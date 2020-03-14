@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-  cleanInputAction, filterAllAction,
+  cleanInputAction, filterAllAction, filterBooleanAction,
   filterTableAction,
   selectColumnAction,
   setTableAction,
@@ -42,6 +42,9 @@ function mapDispatchToProps(dispatch) {
     },
     filterAllTable: () => {
       dispatch(filterAllAction())
+    },
+    filterBooleanTable: () => {
+      dispatch(filterBooleanAction(initialState))
     }
   }
 }
