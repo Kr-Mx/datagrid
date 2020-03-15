@@ -1,11 +1,11 @@
 import {
   CLEAN_INPUT,
   FILTER_ALL,
-  FILTER_BOOLEAN,
+  FILTER_BOOLEAN, FILTER_ENUM,
   FILTER_TABLE,
   SELECT_COLUMN,
   SET_TABLE,
-  SORT_TABLE
+  SORT_TABLE, VIRTUAL_TABLE
 } from "../constants/ActionTypes";
 
 const initialState = {
@@ -13,6 +13,7 @@ const initialState = {
   currentColumn: 0,
   filterData: "",
   isFilterAll: false,
+  isVirtual: false,
   filterBoolean: {isChecked: false, indeterminate: true},
 };
 
@@ -37,6 +38,7 @@ export default function reducers(state = initialState, {type, payload, value}) {
           if (row[state.currentColumn].includes(value)) {
             return row
           }
+
         }), filterData: value
       };
     case SELECT_COLUMN:
@@ -69,6 +71,20 @@ export default function reducers(state = initialState, {type, payload, value}) {
         }
       }
       break;
+    case FILTER_ENUM:
+      if (value === null){return {
+        ...state, tableBody: [].concat(payload)}}
+      else return {
+        ...state, tableBody: state.tableBody.filter((row) => {
+          if (row[state.currentColumn].includes(value)) {
+            return row
+          }
+        })
+      };
+    case VIRTUAL_TABLE:
+      return {
+        ...state, isVirtual: !state.isVirtual
+      };
     default:
       return state;
   }

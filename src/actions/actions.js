@@ -5,7 +5,7 @@ import {
   FILTER_TABLE,
   CLEAN_INPUT,
   FILTER_ALL,
-  FILTER_BOOLEAN
+  FILTER_BOOLEAN, FILTER_ENUM, VIRTUAL_TABLE
 } from '../constants/ActionTypes';
 
 export function setTableAction(payload) {
@@ -54,5 +54,18 @@ export function filterBooleanAction(payload){
   return {
     type: FILTER_BOOLEAN,
     payload
+  }
+}
+
+export function filterEnumAction(value){
+  return {
+    type: FILTER_ENUM,
+    value
+  }
+}
+
+export function virtualAction(){
+  return {
+    type: VIRTUAL_TABLE,
   }
 }

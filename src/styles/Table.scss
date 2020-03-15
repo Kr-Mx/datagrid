@@ -1,16 +1,71 @@
-.table__heading-text{
-  text-align: center;
-  margin: 0;
+.container__controls {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-right: 0;
+  background-color: black;
+  color: white;
 }
-.table__heading-button{
-  float: right;
-  background-color: red;
-  border-radius: 2px;
-  padding: 0 6px;
-  &:hover{
-    cursor: pointer;
+
+.table__sort-buttons {
+  display: flex;
+}
+
+.table__heading-wrapper {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  .table__heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 0 auto;
+    background-color: black;
+
+    &-cell {
+      display: flex;
+      flex-direction: column;
+      width: 200px;
+      font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+      font-weight: 400;
+      line-height: 1.1875em;
+      letter-spacing: 0.00938em;
+      padding: 10px;
+      &-title {
+        border: 1px solid #42a5f5;
+        padding: 18.5px 14px;
+        border-radius: 4px;
+        color: #42a5f5;
+      }
+    }
   }
 }
-.active{
-  color: red;
+.List::-webkit-scrollbar { width: 0; }
+.List{
+  z-index: 0;
+  padding-top: 173px;
+}
+.table__body {
+  &-row {
+    display: flex;
+    justify-content: center;
+  }
+
+  &-col {
+    width: 200px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    border: 1px solid black;
+  }
+}
+
+.table__boolean-filter {
+  align-self: flex-end;
+  height: 25px;
+  width: 25px;
+  margin: 10px auto;
 }

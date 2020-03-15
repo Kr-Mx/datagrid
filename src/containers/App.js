@@ -1,15 +1,14 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-  cleanInputAction, filterAllAction, filterBooleanAction,
+  cleanInputAction, filterAllAction, filterBooleanAction, filterEnumAction,
   filterTableAction,
   selectColumnAction,
   setTableAction,
-  sortTableAction
+  sortTableAction, virtualAction
 } from "../actions/actions";
 import {initialState} from "../constants/initialState";
 import MyTable from "../components/MyTable";
-import {Table} from "react-bootstrap";
 import "../styles/Table.scss";
 
 function mapStateToProps(state) {
@@ -19,6 +18,7 @@ function mapStateToProps(state) {
     currentRow: state.currentRow,
     filterData: state.filterData,
     isFilterAll: state.isFilterAll,
+    isVirtual: state.isVirtual,
     filterBoolean: state.filterBoolean
   };
 }
@@ -45,7 +45,13 @@ function mapDispatchToProps(dispatch) {
     },
     filterBooleanTable: () => {
       dispatch(filterBooleanAction(initialState))
-    }
+    },
+    filterEnumTable: (value) => {
+      dispatch(filterEnumAction(value))
+    },
+    virtualTable: () => {
+      dispatch(virtualAction())
+    },
   }
 }
 
@@ -53,9 +59,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 export function App(props) {
   return (
-    <Table bordered hover variant="dark" style={{textAlign: "center"}}>
-      <MyTable data={props}/>
-    </Table>
+      <MyTable
+        data={props}/>
   );
 }
 
