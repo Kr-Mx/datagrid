@@ -1,5 +1,5 @@
 import {
-  CLEAN_INPUT,
+  CLEAN_INPUT, COLUMN_VISIBILITY,
   FILTER_ALL,
   FILTER_BOOLEAN, FILTER_ENUM,
   FILTER_TABLE,
@@ -15,6 +15,7 @@ const initialState = {
   isFilterAll: false,
   isVirtual: false,
   filterBoolean: {isChecked: false, indeterminate: true},
+  currentColumnVisibility:[true, true, true, true, true, true, true]
 };
 
 export default function reducers(state = initialState, {type, payload, value}) {
@@ -84,6 +85,13 @@ export default function reducers(state = initialState, {type, payload, value}) {
     case VIRTUAL_TABLE:
       return {
         ...state, isVirtual: !state.isVirtual
+      };
+    case COLUMN_VISIBILITY:
+      return {
+        ...state, currentColumnVisibility: state.currentColumnVisibility.map((item, index)=>{
+          if (value === index){return !item}
+          else return item
+        })
       };
     default:
       return state;

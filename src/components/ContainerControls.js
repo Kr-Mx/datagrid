@@ -15,7 +15,9 @@ export default function ContainerControls(props) {
     },
     checked: {},
   })(props => <Checkbox color="default" {...props} />);
-
+  let tableHeadingArray = ["First Name", "Last Name", "Company", "Salary", "Position", "Available", "ID Number"];
+  let tableHeadingButton = tableHeadingArray.map((item,index) => {return <p className="column__control"
+  onClick={()=>{data.columnVisibility(index); console.log(data.currentColumnVisibility)}}>{item}</p>});
   return (<div className="container__controls">
       <FormControlLabel
         control={
@@ -39,6 +41,7 @@ export default function ContainerControls(props) {
         }
         label="Turn on visualization"
       />
+      <div className="column__controls">{tableHeadingButton}</div>
     </div>
   );
 

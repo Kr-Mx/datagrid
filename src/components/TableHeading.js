@@ -45,7 +45,9 @@ export default function TableHeading(props) {
         <div className="table__heading-cell"
           key={index}
             onClick={() => {data.selectColumn(index)}}
-            style={(index === data.currentColumn) ? {backgroundColor: "#eaeaeb"} : null}>
+            style={
+              (!data.currentColumnVisibility[index])? {display:"none"}:
+              (index === data.currentColumn) ? {backgroundColor: "#eaeaeb"} : {display: "flex"}}>
           {(index === 5) ?
             <>
             <span className="table__heading-cell-title">{item}</span>
@@ -55,7 +57,7 @@ export default function TableHeading(props) {
               indeterminate={data.filterBoolean.indeterminate}
               onChange={()=>{data.filterBooleanTable()}}
             />
-            </> : null}
+            </> : undefined}
           {(index === 4) ?
             <>
               <span className="table__heading-cell-title">{item}</span>
@@ -68,14 +70,14 @@ export default function TableHeading(props) {
               onChange={(e)=>{
                 if (e === null){return data.filterEnumTable(e)}
                 else e.map(item=> {return item.value}).forEach(item => data.filterEnumTable(item)); console.log(e)}}/>
-            </> : null}
+            </> : undefined}
 
           {(index !== 5 && index !== 4)?<>
             <CssTextField
             className='text-field'
             variant="outlined"
             label={item}
-            value={(index === data.currentColumn) ? data.filterData : null}
+            value={(index === data.currentColumn) ? data.filterData : undefined}
             onBlur={() => data.cleanInput()}
             onChange={(e) => data.filterTable(e.target.value)}
             />

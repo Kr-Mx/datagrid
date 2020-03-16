@@ -5,7 +5,7 @@ import {
   FILTER_TABLE,
   CLEAN_INPUT,
   FILTER_ALL,
-  FILTER_BOOLEAN, FILTER_ENUM, VIRTUAL_TABLE
+  FILTER_BOOLEAN, FILTER_ENUM, VIRTUAL_TABLE, COLUMN_VISIBILITY
 } from '../constants/ActionTypes';
 
 export function setTableAction(payload) {
@@ -67,5 +67,12 @@ export function filterEnumAction(value){
 export function virtualAction(){
   return {
     type: VIRTUAL_TABLE,
+  }
+}
+
+export function columnVisibilityAction(value){
+  return {
+    type: COLUMN_VISIBILITY,
+    value
   }
 }

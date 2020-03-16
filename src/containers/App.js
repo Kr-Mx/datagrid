@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-  cleanInputAction, filterAllAction, filterBooleanAction, filterEnumAction,
+  cleanInputAction, columnVisibilityAction, filterAllAction, filterBooleanAction, filterEnumAction,
   filterTableAction,
   selectColumnAction,
   setTableAction,
@@ -19,7 +19,8 @@ function mapStateToProps(state) {
     filterData: state.filterData,
     isFilterAll: state.isFilterAll,
     isVirtual: state.isVirtual,
-    filterBoolean: state.filterBoolean
+    filterBoolean: state.filterBoolean,
+    currentColumnVisibility: state.currentColumnVisibility
   };
 }
 
@@ -51,6 +52,9 @@ function mapDispatchToProps(dispatch) {
     },
     virtualTable: () => {
       dispatch(virtualAction())
+    },
+    columnVisibility: (value) => {
+      dispatch(columnVisibilityAction(value))
     },
   }
 }
