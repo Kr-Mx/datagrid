@@ -7,7 +7,7 @@
   background-color: black;
   color: white;
 }
-
+.red.focus{color:red}
 .table__sort-buttons {
   display: flex;
 }
@@ -79,6 +79,10 @@
 .column__control{
   padding: 10px;
   margin: 0;
+  &:hover{
+    cursor: pointer;
+    opacity: 0.75;
+  }
 }
 .table__body-row-wrapper{
   display: flex;

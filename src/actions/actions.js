@@ -57,9 +57,10 @@ export function filterBooleanAction(payload){
   }
 }
 
-export function filterEnumAction(value){
+export function filterEnumAction(payload, value){
   return {
     type: FILTER_ENUM,
+    payload,
     value
   }
 }

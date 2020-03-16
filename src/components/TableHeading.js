@@ -1,45 +1,13 @@
 import SortButtons from "./SortButtons";
 import Checkbox from "react-three-state-checkbox";
 import React from "react";
-import TextField from "@material-ui/core/TextField";
-import withStyles from "@material-ui/core/styles/withStyles";
+import {CssTextField, tableHeadingArray} from "../constants/tableHeading";
 import Select from 'react-select';
 import {position} from '../constants/initialState';
 import ContainerControls from "./ContainerControls";
-const options = position;
-const CssTextField = withStyles({
-  root: {
-    '& input': {
-      color:'white',
-    },
-    '& label.Mui-focused': {
-      color: '#42a5f5',
-    },
-    '& .MuiFormLabel-root': {
-      color: '#42a5f5'
-    },
-    '& .MuiOutlinedInput-root': {
-      '&:hover fieldset': {
-        borderColor: 'white',
-      },
-      '&:focus': {
-        borderColor: 'white',
-      },
-      '& fieldset': {
-        borderColor: '#42a5f5',
-      },
-    },
-    '& fieldset .Mui-focused': {
-      borderColor: 'white',
-    },
-    '&.Mui-focused fieldset': {
-      borderColor: '#42a5f5',
-    },
-  }
-})(TextField);
+
 export default function TableHeading(props) {
   let {data} = props;
-  let tableHeadingArray = ["First Name", "Last Name", "Company", "Salary", "Position", "Available", "ID Number"];
   let tableHeading = tableHeadingArray.map((item, index) => {
       return (
         <div className="table__heading-cell"
@@ -66,8 +34,9 @@ export default function TableHeading(props) {
                 name="colors"
                 className="basic-multi-select"
                 classNamePrefix="select"
-                options={options}
+                options={position}
               onChange={(e)=>{
+                console.log(e);
                 if (e === null){return data.filterEnumTable(e)}
                 else e.map(item=> {return item.value}).forEach(item => data.filterEnumTable(item)); console.log(e)}}/>
             </> : undefined}
@@ -81,7 +50,7 @@ export default function TableHeading(props) {
             onBlur={() => data.cleanInput()}
             onChange={(e) => data.filterTable(e.target.value)}
             />
-              <SortButtons data={data}/>
+              <SortButtons key={index} data={data}/>
             </>
           :null}
         </div>
@@ -98,5 +67,3 @@ export default function TableHeading(props) {
       </div>
   );
 }
-
-//TODO:problem with outline filter

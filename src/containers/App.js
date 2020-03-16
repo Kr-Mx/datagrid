@@ -20,7 +20,7 @@ function mapStateToProps(state) {
     isFilterAll: state.isFilterAll,
     isVirtual: state.isVirtual,
     filterBoolean: state.filterBoolean,
-    currentColumnVisibility: state.currentColumnVisibility
+    currentColumnVisibility: state.currentColumnVisibility,
   };
 }
 
@@ -48,7 +48,7 @@ function mapDispatchToProps(dispatch) {
       dispatch(filterBooleanAction(initialState))
     },
     filterEnumTable: (value) => {
-      dispatch(filterEnumAction(value))
+      dispatch(filterEnumAction(initialState, value))
     },
     virtualTable: () => {
       dispatch(virtualAction())

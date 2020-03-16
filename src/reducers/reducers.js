@@ -14,8 +14,8 @@ const initialState = {
   filterData: "",
   isFilterAll: false,
   isVirtual: false,
-  filterBoolean: {isChecked: false, indeterminate: true},
-  currentColumnVisibility:[true, true, true, true, true, true, true]
+  filterBoolean: {isChecked: true, indeterminate: true},
+  currentColumnVisibility:[true, true, true, true, true, true, true],
 };
 
 export default function reducers(state = initialState, {type, payload, value}) {
@@ -28,12 +28,15 @@ export default function reducers(state = initialState, {type, payload, value}) {
           if (a[state.currentColumn] > b[state.currentColumn]) return value;
           if (a[state.currentColumn] < b[state.currentColumn]) return -value;
           return 0
-        })
+        }),sortingValue: value
       };
     case FILTER_TABLE:
       return {
         ...state, tableBody: [].concat(payload).filter((row) => {
-          if (state.isFilterAll === true && row.some(column => column.includes(value))) {
+
+          if (state.isFilterAll === true && row.some(column =>
+          {if(typeof column !== "boolean")
+            return (column.indexOf(value) !== -1)})) {
             return row
           }
           if (row[state.currentColumn].includes(value)) {
@@ -44,7 +47,7 @@ export default function reducers(state = initialState, {type, payload, value}) {
       };
     case SELECT_COLUMN:
       return {
-        ...state, currentColumn: value
+        ...state, currentColumn: value,
       };
     case CLEAN_INPUT:
       return {
